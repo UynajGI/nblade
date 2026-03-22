@@ -90,31 +90,32 @@ extra_javascript:
 nav:
   - Home: index.md
   - 中文文档:
-    - 快速入门: zh/quickstart.md
-    - 教程:
-      - 基础概念: zh/tutorial/01_basics.md
+      - 快速入门: zh/quickstart.md
+      - 教程:
+          - 基础概念: zh/tutorial/01_basics.md
   - English Docs:
-    - Quick Start: en/quickstart.md
+      - Quick Start: en/quickstart.md
   - API Reference:
-    - Algebra: api/algebra.md
-    - MultiVector: api/multivector.md
+      - Algebra: api/algebra.md
+      - MultiVector: api/multivector.md
   - Examples:
-    - Tutorials: examples/tutorials.md
-    - Physics: examples/physics.md
-    - Computer Graphics: examples/cg.md
+      - Tutorials: examples/tutorials.md
+      - Physics: examples/physics.md
+      - Computer Graphics: examples/cg.md
 
 # Plugins
 plugins:
   - search
   - i18n:
+      default_language: en
       docs_structure: folder
       languages:
-        en:
+        - locale: en
           default: true
           name: English
           build: true
-        zh:
-          name: 中文
+        - locale: zh
+          name: Chinese
           build: true
       nav_translations:
         zh:
