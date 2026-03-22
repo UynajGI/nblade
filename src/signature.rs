@@ -1,5 +1,5 @@
 //! 度量签名模块
-//! 
+//!
 //! 定义几何代数的度量签名 (p, q, r)，其中：
 //! - p: 正平方基向量数量 (e_i² = +1)
 //! - q: 负平方基向量数量 (e_i² = -1)
@@ -20,22 +20,22 @@ pub struct Signature {
 
 impl Signature {
     /// 创建新的签名
-    /// 
+    ///
     /// # 参数
     /// * `p` - 正平方基向量数量
     /// * `q` - 负平方基向量数量
     /// * `r` - 零平方基向量数量
-    /// 
+    ///
     /// # 示例
     /// ```
     /// use nblade::signature::Signature;
-    /// 
+    ///
     /// // 欧几里得空间 G(3,0,0)
     /// let euclidean = Signature::new(3, 0, 0);
-    /// 
+    ///
     /// // 时空代数 G(1,3,0)
     /// let spacetime = Signature::new(1, 3, 0);
-    /// 
+    ///
     /// // 共形几何代数 G(4,1,0)
     /// let cga = Signature::new(4, 1, 0);
     /// ```
@@ -64,10 +64,10 @@ impl Signature {
     }
 
     /// 获取第 i 个基向量的平方值
-    /// 
+    ///
     /// # 参数
     /// * `i` - 基向量索引 (0-based)
-    /// 
+    ///
     /// # 返回
     /// * `1.0` - 如果 i < p (正平方)
     /// * `-1.0` - 如果 p <= i < p+q (负平方)
@@ -142,10 +142,10 @@ mod tests {
     #[test]
     fn test_basis_square() {
         let sig = Signature::new(2, 1, 1);
-        assert_eq!(sig.basis_square(0), 1.0);   // e0² = +1
-        assert_eq!(sig.basis_square(1), 1.0);   // e1² = +1
-        assert_eq!(sig.basis_square(2), -1.0);  // e2² = -1
-        assert_eq!(sig.basis_square(3), 0.0);   // e3² = 0
+        assert_eq!(sig.basis_square(0), 1.0); // e0² = +1
+        assert_eq!(sig.basis_square(1), 1.0); // e1² = +1
+        assert_eq!(sig.basis_square(2), -1.0); // e2² = -1
+        assert_eq!(sig.basis_square(3), 0.0); // e3² = 0
     }
 
     #[test]

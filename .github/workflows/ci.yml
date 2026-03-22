@@ -58,11 +58,33 @@ jobs:
       - name: Install maturin
         run: pip install maturin pytest numpy
       
-      - name: Build wheel
-        run: maturin develop --release
+      - name: Build wheel (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          maturin develop --release
       
-      - name: Run Python tests
-        run: pytest python/test_nblade.py -v
+      - name: Build wheel (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          python -m venv .venv
+          source .venv/Scripts/activate
+          maturin develop --release
+      
+      - name: Run Python tests (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          source .venv/bin/activate
+          pytest python/test_nblade.py -v
+      
+      - name: Run Python tests (Windows)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          source .venv/Scripts/activate
+          pytest python/test_nblade.py -v
 
   lint:
     name: Lint
