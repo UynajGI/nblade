@@ -170,6 +170,10 @@ class Algebra:
         """创建标量多向量"""
         return MultiVector.from_scalar(self._config, value)
 
+    def from_scalar(self, value: float) -> MultiVector:
+        """创建标量多向量（scalar 方法的别名）/ Create scalar multivector (alias for scalar)"""
+        return self.scalar(value)
+
     def one(self) -> MultiVector:
         """创建单位多向量（标量 1）"""
         return MultiVector.one(self._config)
