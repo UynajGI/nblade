@@ -1,0 +1,129 @@
+site_name: nblade Documentation
+site_description: N-dimensional Blade - High-performance Geometric Algebra Library
+site_author: nblade Team
+site_url: https://nblade.readthedocs.io/
+
+# Repository
+repo_name: nblade
+repo_url: https://github.com/nblade/nblade
+
+# Copyright
+copyright: Copyright &copy; 2024 nblade Team
+
+# Configuration
+theme:
+  name: material
+  language: en
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Extra JavaScript for math
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Navigation
+nav:
+  - Home: index.md
+  - 中文文档:
+    - 快速入门: zh/quickstart.md
+    - 教程:
+      - 基础概念: zh/tutorial/01_basics.md
+  - English Docs:
+    - Quick Start: en/quickstart.md
+  - API Reference:
+    - Algebra: api/algebra.md
+    - MultiVector: api/multivector.md
+  - Examples:
+    - Tutorials: examples/tutorials.md
+    - Physics: examples/physics.md
+    - Computer Graphics: examples/cg.md
+
+# Plugins
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+      nav_translations:
+        zh:
+          Home: 首页
+          中文文档: 中文文档
+          Quick Start: 快速入门
+          English Docs: English 文档
+          API Reference: API 参考
+          Examples: 示例
+          Tutorials: 教程
+          Physics: 物理
+          Computer Graphics: 计算机图形学

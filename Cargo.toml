@@ -1,0 +1,56 @@
+[package]
+name = "nblade"
+version = "0.1.0"
+edition = "2021"
+authors = ["nblade Team"]
+description = "N-dimensional Blade - High-performance Geometric Algebra library for arbitrary dimensions"
+license = "MIT"
+readme = "README.md"
+
+[lib]
+name = "nblade"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["python"]
+python = ["pyo3", "numpy"]
+simd = ["wide"]
+pool = []
+
+[dependencies]
+# 并行计算
+rayon = "1.8"
+
+# SIMD 加速（可选特性）
+wide = { version = "0.7", optional = true }
+
+# 高效数组操作
+ndarray = "0.15"
+
+# 数学工具
+num-traits = "0.2"
+
+# 位运算优化
+bitvec = "1.0"
+
+# Python 绑定（可选特性）
+pyo3 = { version = "0.22", features = ["extension-module"], optional = true }
+numpy = { version = "0.22", optional = true }
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.4"
+
+[[bench]]
+name = "geometric_product"
+harness = false
+
+[[bench]]
+name = "pool_benchmark"
+harness = false
+required-features = ["pool"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

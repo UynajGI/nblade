@@ -1,0 +1,60 @@
+# Rust build artifacts
+/target/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+lcov.info
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Linter/formatter caches
+.ruff_cache/
+.mypy_cache/
+
+# Project-specific
+.sisyphus/
+.lingma/
+.archive/
+
+# Development notes
+full_zh.md
+summary.md
+
+# OS
+.DS_Store
+Thumbs.db
