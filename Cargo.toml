@@ -1,6 +1,6 @@
 [package]
 name = "nblade"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["nblade Team"]
 description = "N-dimensional Blade - High-performance Geometric Algebra library for arbitrary dimensions"

@@ -15,7 +15,6 @@ theme:
   name: material
   language: en
   palette:
-    # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: indigo
@@ -23,7 +22,6 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    # Dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo
@@ -86,33 +84,20 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-# Navigation
+# Navigation (English - default)
 nav:
   - Home: index.md
-  - 中文文档:
-      - 快速入门: zh/quickstart.md
-      - 教程:
-          - 基础概念: zh/tutorial/01_basics.md
-          - 对偶操作: zh/tutorial/02_dual.md
-      - API 参考:
-          - Algebra: zh/api/algebra.md
-          - MultiVector: zh/api/multivector.md
-      - 示例:
-          - 教程示例: zh/examples/tutorials.md
-          - 物理应用: zh/examples/physics.md
-          - 计算机图形: zh/examples/cg.md
-  - English Docs:
-      - Quick Start: en/quickstart.md
-      - Tutorials:
-          - Basics: en/tutorial/01_basics.md
-          - Dual Operations: en/tutorial/02_dual.md
-      - API Reference:
-          - Algebra: en/api/algebra.md
-          - MultiVector: en/api/multivector.md
-      - Examples:
-          - Tutorials: en/examples/tutorials.md
-          - Physics: en/examples/physics.md
-          - Computer Graphics: en/examples/cg.md
+  - Quick Start: en/quickstart.md
+  - Tutorials:
+      - Basics: en/tutorial/01_basics.md
+      - Dual Operations: en/tutorial/02_dual.md
+  - API Reference:
+      - Algebra: en/api/algebra.md
+      - MultiVector: en/api/multivector.md
+  - Examples:
+      - Tutorials: en/examples/tutorials.md
+      - Physics: en/examples/physics.md
+      - Computer Graphics: en/examples/cg.md
 
 # Plugins
 plugins:
@@ -125,16 +110,18 @@ plugins:
           name: English
           build: true
         zh:
-          name: Chinese
+          name: 中文
           build: true
       nav_translations:
         zh:
           Home: 首页
-          中文文档: 中文文档
           Quick Start: 快速入门
-          English Docs: English 文档
-          API Reference: API 参考
-          Examples: 示例
           Tutorials: 教程
-          Physics: 物理
-          Computer Graphics: 计算机图形学
+          Basics: 基础概念
+          Dual Operations: 对偶操作
+          API Reference: API 参考
+          Algebra: 代数
+          MultiVector: 多重向量
+          Examples: 示例
+          Physics: 物理应用
+          Computer Graphics: 计算机图形
