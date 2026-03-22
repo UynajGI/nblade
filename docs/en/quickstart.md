@@ -15,7 +15,7 @@ pip install nblade
 pip install maturin
 
 # Clone the repository
-git clone https://github.com/nblade/nblade.git
+git clone https://github.com/UynajGI/nblade.git
 cd nblade
 
 # Build and install
@@ -108,4 +108,4 @@ rotated = e1.rotate_by(rotor)
 
 - [Basics Tutorial](tutorial/01_basics.md) - Dive deeper into geometric algebra fundamentals
 - [API Reference](api/algebra.md) - View the complete API documentation
-- [Example Code](https://github.com/nblade/nblade/tree/main/examples) - More practical examples
+- [Example Code](https://github.com/UynajGI/nblade/tree/main/examples) - More practical examples

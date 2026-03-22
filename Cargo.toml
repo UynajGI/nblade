@@ -6,6 +6,9 @@ authors = ["nblade Team"]
 description = "N-dimensional Blade - High-performance Geometric Algebra library for arbitrary dimensions"
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/UynajGI/nblade"
+keywords = ["geometric-algebra", "clifford-algebra", "multivector", "mathematics", "physics"]
+categories = ["mathematics", "science"]
 
 [lib]
 name = "nblade"

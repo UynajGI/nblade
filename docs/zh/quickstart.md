@@ -15,7 +15,7 @@ pip install nblade
 pip install maturin
 
 # 克隆仓库
-git clone https://github.com/nblade/nblade.git
+git clone https://github.com/UynajGI/nblade.git
 cd nblade
 
 # 构建并安装
@@ -108,4 +108,4 @@ rotated = e1.rotate_by(rotor)
 
 - [基础教程](tutorial/01_basics.md) - 深入了解几何代数基础
 - [API 参考](api/algebra.md) - 查看完整 API 文档
-- [示例代码](https://github.com/nblade/nblade/tree/main/examples) - 更多实用示例
+- [示例代码](https://github.com/UynajGI/nblade/tree/main/examples) - 更多实用示例
