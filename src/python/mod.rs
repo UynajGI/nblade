@@ -5,7 +5,7 @@
 
 use numpy::{PyArray1, PyArrayMethods};
 use pyo3::prelude::*;
-use pyo3::types::{PyList, PyModule, PyType};
+use pyo3::types::{PyAny, PyList, PyModule, PyType};
 use std::sync::Arc;
 
 use crate::basis::frame as frame_ops;
@@ -483,10 +483,26 @@ impl PyMultiVector {
     }
 
     /// 几何积 * / Geometric product *
-    fn __mul__(&self, other: &PyMultiVector) -> Self {
-        Self {
-            inner: self.inner.geometric_product(&other.inner),
+    ///
+    /// 支持多向量与多向量的几何积，或多向量与标量的标量乘法
+    /// Supports geometric product of two multivectors, or scalar multiplication
+    fn __mul__(&self, other: &Bound<'_, PyAny>) -> PyResult<Self> {
+        // 尝试提取为 PyMultiVector / Try to extract as PyMultiVector
+        if let Ok(other_mv) = other.extract::<PyMultiVector>() {
+            return Ok(Self {
+                inner: self.inner.geometric_product(&other_mv.inner),
+            });
         }
+        // 尝试提取为 f64 标量 / Try to extract as f64 scalar
+        if let Ok(scalar) = other.extract::<f64>() {
+            return Ok(Self {
+                inner: self.inner.scale(scalar),
+            });
+        }
+        // 两者都不是，抛出 TypeError / Neither worked, raise TypeError
+        Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
+            "unsupported operand type(s) for *: 'MultiVector' and the given type",
+        ))
     }
 
     /// 反射乘法（标量 * 多向量）/ Reflected multiplication (scalar * multivector)
