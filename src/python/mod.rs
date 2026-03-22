@@ -489,6 +489,13 @@ impl PyMultiVector {
         }
     }
 
+    /// 反射乘法（标量 * 多向量）/ Reflected multiplication (scalar * multivector)
+    fn __rmul__(&self, scalar: f64) -> Self {
+        Self {
+            inner: self.inner.scale(scalar),
+        }
+    }
+
     /// 外积 ^ / Outer product ^
     fn __xor__(&self, other: &PyMultiVector) -> Self {
         Self {
