@@ -3,6 +3,10 @@
 //! 提供几何代数的高性能 Python 接口
 //! Provides high-performance Python interface for geometric algebra
 
+#![allow(clippy::redundant_closure)]
+#![allow(clippy::useless_conversion)]
+#![allow(clippy::needless_range_loop)]
+
 use numpy::{PyArray1, PyArrayMethods};
 use pyo3::prelude::*;
 use pyo3::types::{PyAny, PyList, PyModule, PyType};

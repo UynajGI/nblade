@@ -29,6 +29,11 @@
 //! let inner = e1.left_inner(&e2);
 //! ```
 
+// Clippy allows for common patterns in this codebase
+#![allow(clippy::needless_range_loop)]
+#![allow(clippy::manual_is_multiple_of)]
+#![allow(clippy::unnecessary_cast)]
+
 pub mod algebra_config;
 pub mod basis;
 pub mod geometry;

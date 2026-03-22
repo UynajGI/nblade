@@ -3,6 +3,8 @@
 //! 针对 2D、3D、4D 几何代数的 SIMD 优化实现
 //! SIMD optimized implementation for 2D, 3D, 4D geometric algebra
 
+#![allow(clippy::needless_range_loop)]
+
 #[cfg(feature = "simd")]
 use wide::f64x4;
 
