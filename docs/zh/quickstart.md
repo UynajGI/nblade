@@ -15,8 +15,8 @@ pip install nblade
 pip install maturin
 
 # 克隆仓库
-git clone https://github.com/your-repo/ga-rust.git
-cd ga-rust
+git clone https://github.com/nblade/nblade.git
+cd nblade
 
 # 构建并安装
 maturin develop --release

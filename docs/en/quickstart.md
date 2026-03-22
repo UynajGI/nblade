@@ -15,8 +15,8 @@ pip install nblade
 pip install maturin
 
 # Clone the repository
-git clone https://github.com/your-repo/ga-rust.git
-cd ga-rust
+git clone https://github.com/nblade/nblade.git
+cd nblade
 
 # Build and install
 maturin develop --release
@@ -106,6 +106,6 @@ rotated = e1.rotate_by(rotor)
 
 ## Next Steps
 
-- [Basics Tutorial](en/tutorial/01_basics.md) - Dive deeper into geometric algebra fundamentals
+- [Basics Tutorial](tutorial/01_basics.md) - Dive deeper into geometric algebra fundamentals
 - [API Reference](api/algebra.md) - View the complete API documentation
 - [Example Code](https://github.com/nblade/nblade/tree/main/examples) - More practical examples
