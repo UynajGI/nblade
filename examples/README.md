@@ -10,7 +10,8 @@ examples/
 │   ├── 01_quickstart.py        # 快速入门
 │   ├── 02_basic_operations.py  # 基本运算
 │   ├── 03_vectors.py           # 向量操作
-│   └── 05_rotations.py         # 旋转操作
+│   ├── 05_rotations.py         # 旋转操作
+│   └── 06_reciprocal_frame.py  # 互逆标架
 ├── basic/           # 基础运算示例
 │   ├── 01_basic_operations.py  # 基本运算演示
 │   ├── 02_vector_creation.py   # 向量创建演示
@@ -32,6 +33,7 @@ examples/
 - **02_basic_operations.py**: 几何积、外积、内积等基本运算
 - **03_vectors.py**: 向量创建和操作
 - **05_rotations.py**: 使用转子进行旋转
+- **06_reciprocal_frame.py**: 互逆标架、度量张量、向量分解
 
 ### basic/
 - **01_basic_operations.py**: 演示基本几何代数运算
