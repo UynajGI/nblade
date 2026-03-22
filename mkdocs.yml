@@ -109,11 +109,11 @@ plugins:
   - i18n:
       docs_structure: folder
       languages:
-        - locale: en
+        en:
           default: true
           name: English
           build: true
-        - locale: zh
+        zh:
           name: 中文
           build: true
       nav_translations:
