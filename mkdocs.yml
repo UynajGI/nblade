@@ -109,11 +109,11 @@ plugins:
         en:
           name: English
           build: true
-        zh:
+        zh-cn:
           name: 中文
           build: true
       nav_translations:
-        zh:
+        zh-cn:
           Home: 首页
           Quick Start: 快速入门
           Tutorials: 教程
