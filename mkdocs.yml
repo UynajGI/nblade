@@ -110,11 +110,10 @@ plugins:
       default_language: en
       docs_structure: folder
       languages:
-        - locale: en
-          default: true
+        en:
           name: English
           build: true
-        - locale: zh
+        zh:
           name: Chinese
           build: true
       nav_translations:
