@@ -1,9 +1,13 @@
-name: Publish to TestPyPI
+name: Publish to PyPI
 
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]  # Trigger on GitHub Release published
+  workflow_dispatch:  # Manual trigger with input
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.1)'
+        required: false
 
 jobs:
   build-wheels:
@@ -13,6 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.8", "3.10", "3.12"]
     steps:
       - uses: actions/checkout@v4
       
@@ -22,7 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: ${{ matrix.python-version }}
       
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -34,7 +39,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ matrix.os }}
+          name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
           path: dist
 
   build-sdist:
@@ -60,13 +65,16 @@ jobs:
           path: dist
 
   publish:
-    name: Publish to TestPyPI
+    name: Publish to PyPI
     needs: [build-wheels, build-sdist]
     runs-on: ubuntu-latest
     permissions:
       id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/project/nblade/
     steps:
-      - name: Download wheels
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           pattern: wheels-*
@@ -82,8 +90,6 @@ jobs:
       - name: List distributions
         run: ls -la dist/
       
-      - name: Publish to TestPyPI
+      - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
+        # Uses trusted publishing, no token needed

@@ -93,15 +93,26 @@ nav:
       - 快速入门: zh/quickstart.md
       - 教程:
           - 基础概念: zh/tutorial/01_basics.md
+          - 对偶操作: zh/tutorial/02_dual.md
+      - API 参考:
+          - Algebra: zh/api/algebra.md
+          - MultiVector: zh/api/multivector.md
+      - 示例:
+          - 教程示例: zh/examples/tutorials.md
+          - 物理应用: zh/examples/physics.md
+          - 计算机图形: zh/examples/cg.md
   - English Docs:
       - Quick Start: en/quickstart.md
-  - API Reference:
-      - Algebra: api/algebra.md
-      - MultiVector: api/multivector.md
-  - Examples:
-      - Tutorials: examples/tutorials.md
-      - Physics: examples/physics.md
-      - Computer Graphics: examples/cg.md
+      - Tutorials:
+          - Basics: en/tutorial/01_basics.md
+          - Dual Operations: en/tutorial/02_dual.md
+      - API Reference:
+          - Algebra: en/api/algebra.md
+          - MultiVector: en/api/multivector.md
+      - Examples:
+          - Tutorials: en/examples/tutorials.md
+          - Physics: en/examples/physics.md
+          - Computer Graphics: en/examples/cg.md
 
 # Plugins
 plugins:

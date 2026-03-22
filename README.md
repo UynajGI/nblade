@@ -2,8 +2,15 @@
 
 [![Crates.io](https://img.shields.io/crates/v/nblade.svg)](https://crates.io/crates/nblade)
 [![PyPI](https://img.shields.io/pypi/v/nblade.svg)](https://pypi.org/project/nblade/)
+[![Docs](https://readthedocs.org/projects/nblade/badge/?version=latest)](https://nblade.readthedocs.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![zread](https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff)](https://zread.ai/nikolasibalic/ARC-Alkali-Rydberg-Calculator)
+
+**[English](#overview)** | **[中文](#概述)** | **[Documentation](https://nblade.readthedocs.io/)** | **[文档](https://nblade.readthedocs.io/zh/latest/)**
+
+---
+
+## Overview
 
 **nblade** (N-dimensional Blade) is a high-performance geometric algebra library powered by Rust, with Python bindings. It supports arbitrary dimensions (up to 64D) and arbitrary metric signatures G(p, q, r).
 
@@ -229,6 +236,93 @@ b = 2*e1 + e3
 a_cross_b = (a ^ b).dual()
 print(a_cross_b)
 ```
+
+---
+
+## 概述
+
+**nblade** (N维 Blade) 是一个基于 Rust 实现的高性能几何代数库，提供 Python 绑定。支持任意维度（最高 64 维）和任意度量签名 G(p, q, r)。
+
+### 特性
+
+- **任意维度**: 支持最高 64 维向量空间
+- **任意签名**: 支持 G(p, q, r) 度量签名（欧几里得、时空、共形等）
+- **高性能**: Rust 后端，支持并行计算和 SIMD 优化
+- **双表示**: 自动选择密集或稀疏表示
+- **完整运算**: 所有标准几何代数运算
+- **NumPy 集成**: 直接从 NumPy 数组创建向量
+
+---
+
+## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/UynajGI/nblade.git
+cd nblade
+
+# Install Rust (if not already)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Build
+cargo build --release
+
+# Run tests
+cargo test --all-features
+
+# Build Python bindings
+pip install maturin
+maturin develop --release
+
+# Run Python tests
+pytest python/tests/
+```
+
+### Code Style
+
+- Rust: Follow `cargo fmt` and `cargo clippy`
+- Python: Follow PEP 8, use `ruff format`
+
+---
+
+## 贡献
+
+欢迎贡献！请参阅 [CONTRIBUTING.md](CONTRIBUTING.md) 了解贡献指南。
+
+### 开发环境设置
+
+```bash
+# 克隆仓库
+git clone https://github.com/UynajGI/nblade.git
+cd nblade
+
+# 安装 Rust（如果尚未安装）
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# 构建
+cargo build --release
+
+# 运行测试
+cargo test --all-features
+
+# 构建 Python 绑定
+pip install maturin
+maturin develop --release
+
+# 运行 Python 测试
+pytest python/tests/
+```
+
+### 代码风格
+
+- Rust: 遵循 `cargo fmt` 和 `cargo clippy`
+- Python: 遵循 PEP 8，使用 `ruff format`
+
+---
 
 ## License
 
