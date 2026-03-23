@@ -3,7 +3,6 @@
 **High-Performance Geometric Algebra Library**
 
 [![PyPI](https://img.shields.io/pypi/v/nblade.svg)](https://pypi.org/project/nblade/)
-[![Crates.io](https://img.shields.io/crates/v/nblade.svg)](https://crates.io/crates/nblade/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -69,7 +68,6 @@ rotated = e1.rotate_by(rotor)
 |----------|-----|
 | GitHub | https://github.com/UynajGI/nblade |
 | PyPI | https://pypi.org/project/nblade/ |
-| Crates.io | https://crates.io/crates/nblade |
 
 ## Supported Operations
 
