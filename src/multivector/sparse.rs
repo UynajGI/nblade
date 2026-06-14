@@ -255,8 +255,7 @@ impl SparseMultiVector {
             .iter()
             .filter(|(_, c)| c.abs() > 1e-15)
             .map(|(i, c)| {
-                let basis =
-                    crate::basis::index::index_to_latex(*i, self.config.dimension());
+                let basis = crate::basis::index::index_to_latex(*i, self.config.dimension());
                 if basis.is_empty() {
                     format!("{:.6}", c)
                 } else {
