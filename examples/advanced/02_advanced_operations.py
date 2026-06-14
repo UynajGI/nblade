@@ -84,20 +84,23 @@ def demo_advanced_operations():
     # 双重对偶性质
     dual_dual_v = v.dual().dual()
     print(f"  v 双重对偶: {dual_dual_v}")
-    print(f"  误差 (3D 中应为 -v): {((v + dual_dual_v).norm_squared()) ** 0.5:.10f}\n")
+    print(f"  误差 (3D 中应为 v): {((v - dual_dual_v).norm_squared()) ** 0.5:.10f}\n")
 
     # 逆运算
     print("逆运算:")
-    # 创建可逆多向量
-    mv = alg.scalar(1.0) + e1 + (e2 ^ e3)
-    print(f"  多向量: {mv}")
+    # 使用纯二重向量（rev(A)/|A|² 公式仅对纯级别元素成立）
+    bivector = (e1 ^ e2) + 2.0 * (e2 ^ e3)
+    print(f"  二重向量: {bivector}")
+    # 范数平方
+    nsq = bivector.norm_squared()
+    print(f"  |A|² = {nsq:.6f}")
 
     try:
-        inv_mv = mv.inverse()
-        print(f"  逆: {inv_mv}")
+        inv_bv = bivector.inverse()
+        print(f"  逆: {inv_bv}")
 
         # 验证 A*A⁻¹ = 1
-        product = mv * inv_mv
+        product = bivector * inv_bv
         print(f"  AA⁻¹ = {product}")
         error = ((product - alg.scalar(1.0)).norm_squared()) ** 0.5
         print(f"  误差: {error:.10f}\n")
@@ -107,7 +110,7 @@ def demo_advanced_operations():
     # 复杂多向量运算
     print("复杂多向量运算:")
     # 创建二重向量
-    bivector = e1 ^ e2 + 2 * (e2 ^ e3)
+    bivector = (e1 ^ e2) + 2 * (e2 ^ e3)
     print(f"  二重向量: {bivector}")
 
     # 二重向量的平方

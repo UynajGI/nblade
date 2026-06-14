@@ -187,7 +187,7 @@ def section_3_inverse_dual():
 
     # 二重向量的逆对偶
     print("\n【二重向量的逆对偶】")
-    B = e1 ^ e2 + 2.0 * (e2 ^ e3)
+    B = (e1 ^ e2) + 2.0 * (e2 ^ e3)
     B_dual = B.dual()
     B_back = B_dual.inverse_dual()
 
