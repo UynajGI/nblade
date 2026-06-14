@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Features
 - Added LaTeX rendering support (`_repr_latex_`) for Jupyter notebook display
+- Added Python property-based tests (22 hypothesis tests, 2D-5D)
+- Added coverage tracking (cargo-llvm-cov + pytest-cov) to CI
 
 ### Bug Fixes
 - Fixed CI: merged Python build+test into single venv step

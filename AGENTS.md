@@ -156,6 +156,6 @@ maturin build --release
 ## NOTES
 
 - **Max dimension: 64** (BasisIndex = u64), but practical limit is ~12D (precomputed multiplication tables are O(2^2n); 16D needs 64GB+)
-- **Test suite**: 348 Rust tests + 36 Python tests (as of 2026-06-14)
+- **Test suite**: 346 Rust + 116 Python (incl. 22 hypothesis property tests) as of 2026-06-14
 - **Python feature default ON** — `default = ["python"]`
 - **Release profile:** LTO enabled, single codegen unit for optimization
