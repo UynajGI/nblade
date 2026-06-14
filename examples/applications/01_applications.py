@@ -251,16 +251,17 @@ def demo_cramers_rule():
         print(f"β 分子 x∧a = {beta_num}")
         print(f"α 分子 x∧b = {alpha_num}")
 
-        # 由于分母是二重向量，我们需要使用逆
+        # bivector 相除得到标量系数
         try:
-            beta = (beta_num * denom.inverse()).grade(1)  # 取向量部分
-            alpha = (alpha_num * (-denom.inverse())).grade(1)  # 注意符号
+            beta_scalar = (beta_num * denom.inverse()).scalar_part()
+            alpha_scalar = (alpha_num * (-denom.inverse())).scalar_part()
 
-            print(f"β = {beta}")
-            print(f"α = {alpha}")
+            print(f"β = {beta_scalar}")
+            print(f"α = {alpha_scalar}")
 
-            # 验证解
-            solution = alpha + beta
+            # 验证: αa + βb = x
+            solution = a.scale(alpha_scalar) + b.scale(beta_scalar)
+            diff = x - solution
             print(f"验证: αa + βb = {solution}")
             print(f"误差: {((solution - x).norm_squared()) ** 0.5:.10f}\n")
         except Exception as e:

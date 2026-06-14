@@ -167,7 +167,7 @@ def section_3_inverse_dual():
     e1, e2, e3 = alg.basis_vectors()
 
     print("\n逆对偶运算是 dual() 的逆运算")
-    print("关系：a.dual().inverse_dual() == a")
+    print("关系：在 3D 中，a.dual().inverse_dual() == -a（对向量）")
     print("在 3D 欧几里得空间中，dual 和 inverse_dual 相差一个符号")
 
     # 向量的逆对偶
@@ -180,9 +180,9 @@ def section_3_inverse_dual():
     print(f"dual(v) = {v_dual}")
     print(f"inverse_dual(dual(v)) = {v_back}")
 
-    # 验证
-    diff = v - v_back
-    print(f"\n验证: v - inverse_dual(dual(v)) = {diff}")
+    # 验证（3D 中 inverse_dual(dual(v)) = -v）
+    diff = v + v_back
+    print(f"\n验证: v + inverse_dual(dual(v)) = {diff}")
     print(f"误差范数 = {diff.norm():.2e}")
 
     # 二重向量的逆对偶
@@ -220,11 +220,11 @@ def section_3_inverse_dual():
 
     v_double = v.dual().dual()
     print(f"v.dual().dual() = {v_double}")
-    print(f"在 3D 中，向量的双重对偶等于原向量的负值: -v = {(-v)}")
+    print(f"在 3D 中，向量的双重对偶等于原向量: v = {v}")
 
-    # 验证双重对偶
-    diff_double = v_double + v  # 应为 0，因为 dual(dual(v)) = -v
-    print(f"v.dual().dual() + v = {diff_double}")
+    # 验证双重对偶（3D 中 dual(dual(v)) = v）
+    diff_double = v_double - v  # 应为 0
+    print(f"v.dual().dual() - v = {diff_double}")
     print(f"误差范数 = {diff_double.norm():.2e}")
 
 
@@ -350,9 +350,9 @@ def section_5_volume_element():
     print(f"\nv.dual().inverse_dual() = {inv_dual_method1}")
     print(f"dual(v) | I⁻¹ = {inv_dual_method2}")
 
-    # 验证逆对偶返回原向量
-    diff_back = v - inv_dual_method1
-    print(f"\n验证: v = inverse_dual(dual(v))，误差范数 = {diff_back.norm():.2e}")
+    # 验证逆对偶（3D 中 inverse_dual(dual(v)) = -v）
+    diff_back = v + inv_dual_method1
+    print(f"\n验证: v + inverse_dual(dual(v)) = 0，误差范数 = {diff_back.norm():.2e}")
 
 
 def section_6_applications():

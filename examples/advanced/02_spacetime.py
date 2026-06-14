@@ -41,13 +41,13 @@ def section_1_spacetime_algebra():
 
     print("\n【基向量及其平方】")
     # 时间基向量 e₀² = +1
-    e0_sq = (e0 | e0).scalar_part()
+    e0_sq = (e0 * e0).scalar_part()
     print(f"e₀² = {e0_sq}  (时间方向，正平方)")
 
     # 空间基向量 e₁² = e₂² = e₃² = -1
-    e1_sq = (e1 | e1).scalar_part()
-    e2_sq = (e2 | e2).scalar_part()
-    e3_sq = (e3 | e3).scalar_part()
+    e1_sq = (e1 * e1).scalar_part()
+    e2_sq = (e2 * e2).scalar_part()
+    e3_sq = (e3 * e3).scalar_part()
     print(f"e₁² = {e1_sq}  (空间方向，负平方)")
     print(f"e₂² = {e2_sq}  (空间方向，负平方)")
     print(f"e₃² = {e3_sq}  (空间方向，负平方)")
@@ -62,7 +62,7 @@ def section_1_spacetime_algebra():
     I = alg.config.volume_element()
     print(f"\n【伪标量（体积元）】")
     print(f"I = e₀ ∧ e₁ ∧ e₂ ∧ e₃ = {I}")
-    I_sq = (I | I).scalar_part()
+    I_sq = (I * I).scalar_part()
     print(f"I² = {I_sq}")
 
 
@@ -90,7 +90,7 @@ def section_2_four_vectors():
     print(f"         = {X}")
 
     # 计算时空区间
-    spacetime_interval = (X | X).scalar_part()
+    spacetime_interval = X.norm_squared()
     print(f"\n时空区间 X² = (ct)² - x² - y² - z²")
     print(f"          = {ct * c}² - {x}² - {y}² - {z}²")
     print(f"          = {ct * c * ct * c - x * x - y * y - z * z}")
@@ -127,7 +127,8 @@ def section_2_four_vectors():
     print(f"         = {U}")
 
     # 验证四速度归一化: U² = c²
-    U_sq = (U | U).scalar_part()
+    # 注意：非欧几何下须用 norm_squared() 而非 (U|U).scalar_part()
+    U_sq = U.norm_squared()
     print(f"\n验证 U² = {U_sq:.6f} (应等于 c² = {c * c})")
 
     print("\n【四动量向量】")
@@ -151,7 +152,7 @@ def section_2_four_vectors():
     print(f"         = {P}")
 
     # 验证质能关系: P² = m₀²c²
-    P_sq = (P | P).scalar_part()
+    P_sq = P.norm_squared()
     expected = m0**2 * c**2
     print(f"\n验证 P² = {P_sq:.6f} (应等于 m₀²c² = {expected})")
     print(f"质能关系: E² - |p|²c² = m₀²c⁴")
@@ -232,8 +233,8 @@ def section_3_lorentz_transformations():
     print(f"变换后: X' = ({ct_new:.6f}, {x_new:.6f}, {y_new:.6f}, {z_new:.6f})")
 
     # 验证时空区间不变
-    interval_orig = (X_orig | X_orig).scalar_part()
-    interval_new = (X_new | X_new).scalar_part()
+    interval_orig = X_orig.norm_squared()
+    interval_new = X_new.norm_squared()
     print(f"\n验证时空区间不变性:")
     print(f"  原始 X² = {interval_orig:.6f}")
     print(f"  变换后 X'² = {interval_new:.6f}")
@@ -348,7 +349,7 @@ def section_5_spacetime_intervals():
     dt = 2.0
     dx, dy, dz = 0.5, 0.0, 0.0
     X_timelike = e0.scale(dt * c) + e1.scale(dx) + e2.scale(dy) + e3.scale(dz)
-    interval_t = (X_timelike | X_timelike).scalar_part()
+    interval_t = X_timelike.norm_squared()
     print(f"Δt = {dt}, Δx = {dx}, Δy = {dy}, Δz = {dz}")
     print(f"Δs² = {interval_t:.6f} > 0 → 类时间隔")
     print("存在参考系使两事件发生在同一位置")
@@ -358,7 +359,7 @@ def section_5_spacetime_intervals():
     dt = 0.5
     dx, dy, dz = 2.0, 0.0, 0.0
     X_spacelike = e0.scale(dt * c) + e1.scale(dx) + e2.scale(dy) + e3.scale(dz)
-    interval_s = (X_spacelike | X_spacelike).scalar_part()
+    interval_s = X_spacelike.norm_squared()
     print(f"Δt = {dt}, Δx = {dx}, Δy = {dy}, Δz = {dz}")
     print(f"Δs² = {interval_s:.6f} < 0 → 类空间隔")
     print("存在参考系使两事件同时发生")
@@ -369,7 +370,7 @@ def section_5_spacetime_intervals():
     dt = 1.0
     dx, dy, dz = 1.0, 0.0, 0.0  # 空间距离等于 c*dt
     X_lightlike = e0.scale(dt * c) + e1.scale(dx) + e2.scale(dy) + e3.scale(dz)
-    interval_l = (X_lightlike | X_lightlike).scalar_part()
+    interval_l = X_lightlike.norm_squared()
     print(f"Δt = {dt}, Δx = {dx}, Δy = {dy}, Δz = {dz}")
     print(f"Δs² = {interval_l:.6f} ≈ 0 → 类光间隔")
     print("只有光可以连接这两个事件")
@@ -393,10 +394,10 @@ def section_5_spacetime_intervals():
     light_y_neg = e0.scale(1.0) - e2.scale(1.0)
 
     print(f"\n沿 +x 方向的光: {light_x_pos}")
-    print(f"  平方 = {(light_x_pos | light_x_pos).scalar_part():.6f} (类光)")
+    print(f"  平方 = {(light_x_pos * light_x_pos).scalar_part():.6f} (类光)")
 
     print(f"\n沿 -x 方向的光: {light_x_neg}")
-    print(f"  平方 = {(light_x_neg | light_x_neg).scalar_part():.6f} (类光)")
+    print(f"  平方 = {(light_x_neg * light_x_neg).scalar_part():.6f} (类光)")
 
 
 def section_6_special_relativity():
@@ -442,7 +443,7 @@ def section_6_special_relativity():
         + e2.scale(gamma * v_y * c)
         + e3.scale(gamma * v_z * c)
     )
-    U_sq = (U | U).scalar_part()
+    U_sq = U.norm_squared()
 
     print(f"\n四速度 U = γ(c, vₓc, vᵧc, vᵤc)")
     print(f"U² = {U_sq:.6f} (恒等于 c² = {c * c})")
@@ -457,7 +458,7 @@ def section_6_special_relativity():
     p = gamma * m0 * beta * c
 
     P = e0.scale(E / c) + e1.scale(p)
-    P_sq = (P | P).scalar_part()
+    P_sq = P.norm_squared()
 
     print(f"\n静止质量 m₀ = {m0}")
     print(f"总能量 E = γm₀c² = {E:.6f}")

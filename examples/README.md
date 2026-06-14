@@ -17,13 +17,13 @@ examples/
 ├── basic/           # 基础运算示例
 │   ├── 01_basic_operations.py  # 基本运算演示
 │   ├── 02_vector_creation.py   # 向量创建演示
-│   └── vector_from_array.py    # 从数组创建向量
+│   └── 03_vector_from_array.py # 从数组创建向量
 ├── advanced/        # 高级运算示例
-│   ├── 02_advanced_operations.py
-│   ├── 03_spacetime.py         # 时空代数
-│   └── 04_conformal.py         # 共形几何代数
+│   ├── 01_advanced_operations.py
+│   ├── 02_spacetime.py         # 时空代数
+│   └── 03_conformal.py         # 共形几何代数
 ├── applications/    # 应用示例
-│   └── 03_applications.py      # 几何应用演示
+│   └── 01_applications.py      # 几何应用演示
 ├── physics/         # 物理应用示例
 │   ├── 01_rigid_body.py        # 刚体动力学
 │   ├── 02_kepler_problem.py    # 开普勒问题
@@ -51,12 +51,12 @@ examples/
 - **02_vector_creation.py**: 演示从 Python 列表/数组创建向量
 
 ### advanced/
-- **02_advanced_operations.py**: 演示高级运算（对合、逆、对偶、交换子等）
-- **03_spacetime.py**: 时空代数 G(1,3)，四向量、洛伦兹变换
-- **04_conformal.py**: 共形几何代数 G(4,1)，点、圆、球、变换
+- **01_advanced_operations.py**: 演示高级运算（对合、逆、对偶、交换子等）
+- **02_spacetime.py**: 时空代数 G(1,3)，四向量、洛伦兹变换
+- **03_conformal.py**: 共形几何代数 G(4,1)，点、圆、球、变换
 
 ### applications/
-- **03_applications.py**: 演示实际应用（旋转、反射、投影等几何变换）
+- **01_applications.py**: 演示实际应用（旋转、反射、投影等几何变换）
 
 ### physics/
 - **01_rigid_body.py**: 刚体动力学模拟示例
@@ -79,8 +79,9 @@ python examples/tutorials/01_quickstart.py
 python examples/basic/01_basic_operations.py
 
 # 运行高级示例
-python examples/advanced/03_spacetime.py
-python examples/advanced/04_conformal.py
+python examples/advanced/01_advanced_operations.py
+python examples/advanced/02_spacetime.py
+python examples/advanced/03_conformal.py
 
 # 运行物理示例
 python examples/physics/01_rigid_body.py
