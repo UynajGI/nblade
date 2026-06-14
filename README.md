@@ -278,7 +278,7 @@ pip install maturin
 maturin develop --release
 
 # Run Python tests
-pytest python/tests/
+pytest tests/test_python_api.py
 ```
 
 ### Code Style

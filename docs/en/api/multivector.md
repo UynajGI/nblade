@@ -300,10 +300,10 @@ print(inner.scalar_part())  # 25
 Get coefficients for all basis elements.
 
 ```python
-def coefficients(self) -> List[float]
+def coefficients(self) -> numpy.ndarray
 ```
 
-**Returns**: List of coefficients
+**Returns**: NumPy array of coefficients for all basis elements
 
 ---
 
@@ -619,12 +619,53 @@ def scalar_product(self, other: MultiVector) -> float
 
 ---
 
+### `get_coefficient(index)`
+
+Get a single coefficient at the given basis blade index.
+
+```python
+def get_coefficient(self, index: int) -> float
+```
+
+**Parameters**: `index` - Basis blade index (0 for scalar, 1 for e1, 3 for e1∧e2, etc.)
+
+**Returns**: Coefficient value
+
+**Example**:
+```python
+v = alg.vector([1, 2, 3])
+print(v.get_coefficient(1))  # 1.0 (e1 coefficient)
+print(v.get_coefficient(3))  # 0.0 (no e1∧e2 component)
+```
+
+---
+
 ### `is_zero()`
 
 Check if zero.
 
 ```python
 def is_zero(self) -> bool
+```
+
+---
+
+### `__eq__()` / `__ne__()`
+
+Equality comparison. Two multivectors are equal if their difference is zero.
+
+```python
+def __eq__(self, other: object) -> bool
+def __ne__(self, other: object) -> bool
+```
+
+**Operator**: `==`, `!=`
+
+**Example**:
+```python
+a = alg.vector([1, 2, 3])
+b = alg.vector([1, 2, 3])
+assert a == b
 ```
 
 ---
@@ -640,6 +681,8 @@ def is_zero(self) -> bool
 | `a \| b` | `left_inner` | Left inner product |
 | `-a` | `__neg__` | Negation |
 | `~a` | `grade_involution` | Grade involution |
+| `a == b` | `__eq__` | Equality check |
+| `a != b` | `__ne__` | Inequality check |
 
 ---
 

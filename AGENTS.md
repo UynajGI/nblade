@@ -1,6 +1,6 @@
 # NBLADE PROJECT KNOWLEDGE BASE
 
-**Generated:** 2026-03-22T12:00:00+08:00
+**Generated:** 2026-06-14T12:00:00+08:00
 **Stack:** Rust 2021 Edition + Python 3.8+ (PyO3/maturin)
 
 ## OVERVIEW
@@ -44,7 +44,7 @@ nblade/
 | Metric signatures | `src/signature.rs` | Euclidean, spacetime, custom |
 | Thread sharing | `src/algebra_config.rs` | `AlgebraConfigRef = Arc<AlgebraConfig>` |
 | Python bindings | `src/python/mod.rs` | Feature `python` required |
-| Tests | `tests/test_arbitrary_dimension.rs` | 19 tests, 1D-16D coverage |
+| Tests | `tests/test_arbitrary_dimension.rs` | 18 tests, 1D-12D coverage |
 | Benchmarks | `benches/geometric_product.rs` | Criterion, 3D and 5D |
 | Volume element | `src/algebra_config.rs` | `volume_element()`, `volume_element_squared()`, `volume_element_inverse()` |
 | Reciprocal frame | `src/basis/frame.rs` | `reciprocal_frame()`, `verify_reciprocal_frame()`, `metric_tensor()` |
@@ -105,7 +105,7 @@ assert!((value - expected).abs() < 1e-10);  // Never assert_eq! for floats
 - **No traits** — Uses concrete types and enum dispatch (MultiVector)
 - **Chinese comments** — Docstrings in Chinese throughout
 - **Manual Send/Sync** — `unsafe impl Send/Sync for AlgebraConfig` (lines 144-145 in algebra_config.rs)
-- **No CI/CD** — Zero workflow files, Makefile, or justfile
+- **No CI/CD** — GitHub release workflows exist but no CI test/lint pipelines
 
 ## UNIQUE STYLES
 
@@ -152,8 +152,7 @@ maturin build --release
 
 ## NOTES
 
-- **Max dimension: 64** (BasisIndex = u64)
-- **No git history** — Fresh repo or squashed
-- **Empty `src/utils/`** directory exists but unused
+- **Max dimension: 64** (BasisIndex = u64), but practical limit is ~12D (precomputed multiplication tables are O(2^2n); 16D needs 64GB+)
+- **Test suite**: 348 Rust tests + 36 Python tests (as of 2026-06-14)
 - **Python feature default ON** — `default = ["python"]`
 - **Release profile:** LTO enabled, single codegen unit for optimization

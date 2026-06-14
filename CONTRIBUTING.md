@@ -35,7 +35,7 @@ maturin develop --release
 
 # 6. 运行测试
 cargo test --all-features
-pytest python/tests/
+pytest tests/test_python_api.py
 ```
 
 ---
@@ -114,7 +114,7 @@ test(operations): add tests for dual operation
 3. **运行测试**:
    ```bash
    cargo test --all-features
-   pytest python/tests/
+   pytest tests/test_python_api.py
    cargo clippy --all-features -- -D warnings
    ```
 

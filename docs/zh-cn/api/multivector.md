@@ -300,10 +300,10 @@ print(inner.scalar_part())  # 25
 获取所有基元素的系数。
 
 ```python
-def coefficients(self) -> List[float]
+def coefficients(self) -> numpy.ndarray
 ```
 
-**返回值**：系数列表
+**返回值**：NumPy 数组，包含所有基元素的系数
 
 ---
 
@@ -619,12 +619,53 @@ def scalar_product(self, other: MultiVector) -> float
 
 ---
 
+### `get_coefficient(index)`
+
+获取指定基刃索引的单个系数。
+
+```python
+def get_coefficient(self, index: int) -> float
+```
+
+**参数**：`index` - 基刃索引（0 为标量，1 为 e1，3 为 e1∧e2，以此类推）
+
+**返回值**：系数值
+
+**示例**：
+```python
+v = alg.vector([1, 2, 3])
+print(v.get_coefficient(1))  # 1.0（e1 系数）
+print(v.get_coefficient(3))  # 0.0（无 e1∧e2 分量）
+```
+
+---
+
 ### `is_zero()`
 
 检查是否为零。
 
 ```python
 def is_zero(self) -> bool
+```
+
+---
+
+### `__eq__()` / `__ne__()`
+
+相等比较。两个多重向量相等当且仅当它们的差为零。
+
+```python
+def __eq__(self, other: object) -> bool
+def __ne__(self, other: object) -> bool
+```
+
+**运算符**：`==`、`!=`
+
+**示例**：
+```python
+a = alg.vector([1, 2, 3])
+b = alg.vector([1, 2, 3])
+assert a == b
 ```
 
 ---
@@ -640,6 +681,8 @@ def is_zero(self) -> bool
 | `a \| b` | `left_inner` | 左内积 |
 | `-a` | `__neg__` | 取负 |
 | `~a` | `grade_involution` | 阶对合 |
+| `a == b` | `__eq__` | 相等比较 |
+| `a != b` | `__ne__` | 不等比较 |
 
 ---
 
