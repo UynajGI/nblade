@@ -260,7 +260,7 @@ impl DenseMultiVector {
         for term in &terms[1..] {
             if term.starts_with('-') {
                 result.push_str(" - ");
-                result.push_str(&term[1..]);
+                result.push_str(term.strip_prefix('-').unwrap());
             } else {
                 result.push(' ');
                 result.push('+');
