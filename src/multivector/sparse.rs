@@ -240,6 +240,49 @@ impl SparseMultiVector {
     pub fn iter(&self) -> impl Iterator<Item = (&BasisIndex, &f64)> {
         self.coefficients.iter()
     }
+
+    /// LaTeX 格式的多重向量表示
+    pub fn to_latex(&self) -> String {
+        if self.coefficients.is_empty() {
+            return "0".to_string();
+        }
+
+        let mut terms: Vec<(BasisIndex, f64)> =
+            self.coefficients.iter().map(|(&k, &v)| (k, v)).collect();
+        terms.sort_by_key(|(k, _)| *k);
+
+        let term_strings: Vec<String> = terms
+            .iter()
+            .filter(|(_, c)| c.abs() > 1e-15)
+            .map(|(i, c)| {
+                let basis =
+                    crate::basis::index::index_to_latex(*i, self.config.dimension());
+                if basis.is_empty() {
+                    format!("{:.6}", c)
+                } else {
+                    format!("{:.6} {}", c, basis)
+                }
+            })
+            .collect();
+
+        if term_strings.is_empty() {
+            return "0".to_string();
+        }
+
+        let mut result = term_strings[0].clone();
+        for term in &term_strings[1..] {
+            if term.starts_with('-') {
+                result.push_str(" - ");
+                result.push_str(&term[1..]);
+            } else {
+                result.push(' ');
+                result.push('+');
+                result.push(' ');
+                result.push_str(term);
+            }
+        }
+        result
+    }
 }
 
 impl std::fmt::Display for SparseMultiVector {

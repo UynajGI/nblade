@@ -566,6 +566,11 @@ impl PyMultiVector {
     fn __str__(&self) -> String {
         format!("{}", self.inner)
     }
+
+    /// LaTeX 格式（Jupyter notebook 中自动渲染）
+    fn _repr_latex_(&self) -> String {
+        format!("${}$", self.inner.to_latex())
+    }
 }
 
 // ============================================================================

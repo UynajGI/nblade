@@ -198,6 +198,14 @@ impl MultiVector {
             MultiVector::Sparse(_) => None,
         }
     }
+
+    /// LaTeX 格式输出
+    pub fn to_latex(&self) -> String {
+        match self {
+            MultiVector::Dense(d) => d.to_latex(),
+            MultiVector::Sparse(s) => s.to_latex(),
+        }
+    }
 }
 
 impl std::fmt::Display for MultiVector {

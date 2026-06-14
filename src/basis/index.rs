@@ -249,6 +249,22 @@ pub fn index_to_string(index: BasisIndex, dimension: u32) -> String {
     parts.join("∧")
 }
 
+/// 将基索引转换为 LaTeX 格式
+pub fn index_to_latex(index: BasisIndex, dimension: u32) -> String {
+    if index == 0 {
+        return String::new(); // scalar has no basis label
+    }
+
+    let mut parts = Vec::new();
+    for i in 0..dimension {
+        if index & (1u64 << i) != 0 {
+            parts.push(format!("e_{{{}}}", i + 1));
+        }
+    }
+
+    parts.join(" \\wedge ")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

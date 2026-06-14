@@ -235,6 +235,41 @@ impl DenseMultiVector {
     pub fn as_array(&self) -> &ndarray::Array1<f64> {
         &self.coefficients
     }
+
+    /// LaTeX 格式的多重向量表示
+    pub fn to_latex(&self) -> String {
+        let terms: Vec<String> = self
+            .non_zero_terms()
+            .iter()
+            .map(|(i, c)| {
+                let basis = crate::basis::index::index_to_latex(*i as u64, self.config.dimension());
+                if basis.is_empty() {
+                    format!("{:.6}", c)
+                } else {
+                    format!("{:.6} {}", c, basis)
+                }
+            })
+            .collect();
+
+        if terms.is_empty() {
+            return "0".to_string();
+        }
+
+        // Build with proper sign handling
+        let mut result = terms[0].clone();
+        for term in &terms[1..] {
+            if term.starts_with('-') {
+                result.push_str(" - ");
+                result.push_str(&term[1..]);
+            } else {
+                result.push(' ');
+                result.push('+');
+                result.push(' ');
+                result.push_str(term);
+            }
+        }
+        result
+    }
 }
 
 impl std::fmt::Display for DenseMultiVector {
