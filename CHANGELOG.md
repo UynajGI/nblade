@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-06-14
+
+### Features
+- Added LaTeX rendering support (`_repr_latex_`) for Jupyter notebook display
+
+### Bug Fixes
+- Fixed CI: merged Python build+test into single venv step
+- Fixed clippy `manual_strip` and ruff violations across Python code
+
+### Documentation
+- Documented `inverse()` limitation (pure-grade only) in API docs
+- Documented `|` (left_inner) metric signature caveat in API docs
+- Updated dimension limit docs (64D → practical ~12D)
+- Split README into English-only and Chinese-only versions
+
 ## [0.1.3] - 2026-06-14
 
 ### Features
@@ -52,7 +67,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dense and sparse multivector representations
 - NumPy integration
 
-[Unreleased]: https://github.com/UynajGI/nblade/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/UynajGI/nblade/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/UynajGI/nblade/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/UynajGI/nblade/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/UynajGI/nblade/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/UynajGI/nblade/releases/tag/v0.1.1
