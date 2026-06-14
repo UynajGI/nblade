@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
-      
+
       - name: Cache cargo
         uses: actions/cache@v4
         with:
@@ -26,7 +26,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-      
+
       - name: Run Rust unit tests
         run: cargo test --lib --all-features
 
@@ -49,44 +49,32 @@ jobs:
             python-version: "3.8"
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
-      
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      
-      - name: Install maturin
-        run: pip install maturin pytest numpy ruff
-      
-      - name: Build wheel (Unix)
+
+      - name: Build and test (Unix)
         if: runner.os != 'Windows'
         run: |
           python -m venv .venv
           source .venv/bin/activate
+          pip install maturin pytest numpy
           maturin develop --release
-      
-      - name: Build wheel (Windows)
-        if: runner.os == 'Windows'
-        shell: bash
-        run: |
-          python -m venv .venv
-          source .venv/Scripts/activate
-          maturin develop --release
-      
-      - name: Run Python tests (Unix)
-        if: runner.os != 'Windows'
-        run: |
-          source .venv/bin/activate
           pytest tests/test_python_api.py python/test_nblade.py -v
-      
-      - name: Run Python tests (Windows)
+
+      - name: Build and test (Windows)
         if: runner.os == 'Windows'
         shell: bash
         run: |
+          python -m venv .venv
           source .venv/Scripts/activate
+          pip install maturin pytest numpy
+          maturin develop --release
           pytest tests/test_python_api.py python/test_nblade.py -v
 
   lint:
@@ -94,15 +82,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
-      
+
       - name: Check formatting
         run: cargo fmt -- --check
-      
+
       - name: Clippy
         run: cargo clippy --all-features -- -D warnings
 
