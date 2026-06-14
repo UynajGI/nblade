@@ -40,25 +40,25 @@ impl PyAlgebraConfig {
     fn new(dimension: u32, p: u32, q: u32, r: u32) -> PyResult<Self> {
         if dimension == 0 {
             return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                "dimension must be at least 1, got 0"
+                "dimension must be at least 1, got 0",
             ));
         }
         if dimension > 12 {
-            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                format!(
-                    "dimension {} exceeds practical limit (12). \
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(format!(
+                "dimension {} exceeds practical limit (12). \
                      Dense operations use O(2^2n) memory and may OOM.",
-                    dimension
-                )
-            ));
+                dimension
+            )));
         }
         if p + q + r != dimension {
-            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                format!(
-                    "p + q + r ({}) must equal dimension ({}), got p={}, q={}, r={}",
-                    p + q + r, dimension, p, q, r,
-                )
-            ));
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(format!(
+                "p + q + r ({}) must equal dimension ({}), got p={}, q={}, r={}",
+                p + q + r,
+                dimension,
+                p,
+                q,
+                r,
+            )));
         }
         let signature = Signature::new(p, q, r);
         let config = AlgebraConfig::new(dimension, signature);
@@ -227,12 +227,12 @@ impl PyMultiVector {
     #[classmethod]
     fn basis_vector(_cls: &Bound<'_, PyType>, config: &PyAlgebraConfig, i: u32) -> PyResult<Self> {
         if i >= config.inner.dimension() {
-            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                format!(
-                    "basis vector index {} out of range for dimension {} algebra (valid: 0..{})",
-                    i, config.inner.dimension(), config.inner.dimension()
-                )
-            ));
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(format!(
+                "basis vector index {} out of range for dimension {} algebra (valid: 0..{})",
+                i,
+                config.inner.dimension(),
+                config.inner.dimension()
+            )));
         }
         Ok(Self {
             inner: MultiVector::basis_vector(config.inner.clone(), i),
@@ -253,12 +253,12 @@ impl PyMultiVector {
         let expected = config.inner.basis_count();
         let actual = coefficients.len();
         if actual != expected {
-            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                format!(
-                    "coefficients length {} must equal basis_count ({}) for {}-dimensional algebra",
-                    actual, expected, config.inner.dimension()
-                )
-            ));
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(format!(
+                "coefficients length {} must equal basis_count ({}) for {}-dimensional algebra",
+                actual,
+                expected,
+                config.inner.dimension()
+            )));
         }
         Ok(Self {
             inner: MultiVector::from_coefficients(config.inner.clone(), coefficients),
@@ -327,12 +327,12 @@ impl PyMultiVector {
         })?;
         let expected = config.inner.basis_count();
         if slice.len() != expected {
-            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
-                format!(
-                    "array length {} must equal basis_count ({}) for {}-dimensional algebra",
-                    slice.len(), expected, config.inner.dimension()
-                )
-            ));
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(format!(
+                "array length {} must equal basis_count ({}) for {}-dimensional algebra",
+                slice.len(),
+                expected,
+                config.inner.dimension()
+            )));
         }
         let coefficients = slice.to_vec();
         Ok(Self {
@@ -570,10 +570,15 @@ impl PyMultiVector {
             });
         }
         // 两者都不是，抛出 TypeError / Neither worked, raise TypeError
-        let other_type = other.get_type().name().map(|n| n.to_string()).unwrap_or_else(|_| "?".to_string());
-        Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
-            format!("unsupported operand type(s) for *: 'MultiVector' and '{}'", other_type),
-        ))
+        let other_type = other
+            .get_type()
+            .name()
+            .map(|n| n.to_string())
+            .unwrap_or_else(|_| "?".to_string());
+        Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(format!(
+            "unsupported operand type(s) for *: 'MultiVector' and '{}'",
+            other_type
+        )))
     }
 
     /// 反射乘法（标量 * 多向量）/ Reflected multiplication (scalar * multivector)
