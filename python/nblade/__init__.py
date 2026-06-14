@@ -82,7 +82,7 @@ from ._core import (
     basis_reconstruction,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 
 __all__ = [
     "Algebra",
