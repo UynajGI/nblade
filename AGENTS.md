@@ -26,12 +26,15 @@ nblade/
 ├── benches/                # Criterion benchmarks
 ├── python/                 # Python package (nblade)
 ├── examples/               # Tutorial and application examples
-│   ├── tutorials/          # Basic tutorials
-│   ├── physics/            # Physics applications
-│   └── cg/                 # Computer graphics examples
+│   ├── tutorials/          # 01-07: Basics through grade ops
+│   ├── basic/              # 01-03: Basic operations and vector creation
+│   ├── advanced/           # 01-03: Advanced ops, spacetime, conformal
+│   ├── applications/       # 01: Applications demo
+│   ├── physics/            # 01-03: Rigid body, Kepler, EM
+│   └── cg/                 # 01-04: Transforms, projection, reflection, interpolation
 └── docs/                   # MkDocs documentation
-    │   └── zh/                 # Chinese documentation
-    └── en/                 # English documentation
+    ├── en/                 # English documentation
+    └── zh/                 # Chinese documentation
 ```
 
 ## WHERE TO LOOK

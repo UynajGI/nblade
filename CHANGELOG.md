@@ -13,12 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 - Fixed 5 Python test bugs (basis_count assertion, basis_vectors unpacking, commutator formula)
 - Fixed `^` operator precedence bugs in examples (Python parses `e1 ^ e2 + 2*(e2 ^ e3)` as `e1 ^ (e2 + ...)`)
-- Fixed dual-dual expectation in advanced example (library convention: dual(dual(v)) = v)
+- Fixed dual-dual expectation in advanced examples (library convention: dual(dual(v)) = v)
 - Fixed inverse example to use pure bivector (rev(A)/|A|^2 formula only valid for pure-grade elements)
+- Fixed non-Euclidean norm bug: `(A|B).scalar_part()` ignores metric signature, replaced with `norm_squared()`
+- Fixed Cramer's rule example in applications (`.grade(1)` → `.scalar_part()`)
+- Fixed dual-dual roundtrip assertions in tutorial (dual(dual(v))=v, inverse_dual(dual(v))=-v in 3D)
 
 ### Documentation
-- Added `get_coefficient`, `__eq__`/`__ne__` to MultiVector API docs (en + zh-cn)
+- Added `get_coefficient`, `__eq__`/`__ne__` to MultiVector API docs (en + zh)
 - Fixed `coefficients()` return type in docs (List[float] → numpy.ndarray)
+- Renumbered example files to consistent 01-starting numbering
+- Updated examples/README.md paths to match renumbered files
+- Fixed i18n: replaced mkdocs-i18n with mkdocs-static-i18n, renamed zh-cn → zh
 
 ## [0.1.2] - 2026-03-23
 
