@@ -2,17 +2,45 @@ name: Publish to PyPI
 
 on:
   release:
-    types: [published]  # Trigger on GitHub Release published
-  workflow_dispatch:  # Manual trigger with input
+    types: [published]
+  workflow_dispatch:
     inputs:
       version:
         description: 'Version to publish (e.g., 0.1.1)'
         required: false
 
 jobs:
+  check-ci:
+    name: Verify CI passed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CI status
+        run: |
+          COMMIT_SHA="${{ github.sha }}"
+          echo "Checking CI for commit: $COMMIT_SHA"
+          # Wait up to 10 min for CI to finish
+          for i in $(seq 1 20); do
+            STATUS=$(gh run list --commit "$COMMIT_SHA" -w CI --json conclusion -q '.[0].conclusion' 2>/dev/null || echo "")
+            if [ "$STATUS" = "success" ]; then
+              echo "CI passed!"
+              exit 0
+            elif [ "$STATUS" = "failure" ] || [ "$STATUS" = "cancelled" ]; then
+              echo "CI status: $STATUS — aborting publish"
+              exit 1
+            fi
+            echo "Waiting for CI... ($i/20, status=$STATUS)"
+            sleep 30
+          done
+          echo "CI did not succeed within timeout — aborting publish"
+          exit 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+jobs:
   build-wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    needs: check-ci
     strategy:
       fail-fast: false
       matrix:
