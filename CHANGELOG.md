@@ -5,16 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.3](https://github.com/UynajGI/nblade/compare/v0.1.2...v0.1.3) (2026-06-14)
-
-
-### Bug Fixes
-
-* add __eq__/get_coefficient to Python bindings, fix test bugs, cap dimension tests ([968df7c](https://github.com/UynajGI/nblade/commit/968df7c14e41adc4fa704784f74c9054b440e7c4))
-* correct example bugs from Python ^ operator precedence and math errors ([58458f8](https://github.com/UynajGI/nblade/commit/58458f88d5f7935395832a1a0fca80636d51c7bf))
-* **i18n:** fix ReadTheDocs Chinese site by switching to mkdocs-static-i18n ([9143519](https://github.com/UynajGI/nblade/commit/9143519eae22c04a9ad6ed80a2b0bf8aef22cfb5))
-* renumber examples, fix non-Euclidean norm and dual-dual math errors ([2c68ee8](https://github.com/UynajGI/nblade/commit/2c68ee89fe534e640535febec9c657a6ecbb29f7))
-
 ## [0.1.3] - 2026-06-14
 
 ### Features
