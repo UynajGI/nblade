@@ -83,7 +83,7 @@ from ._core import (
     verify_reciprocal_frame,
 )
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 __all__ = [
     "Algebra",
