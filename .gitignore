@@ -64,6 +64,7 @@ Thumbs.db
 # Tools
 .code-review-graph/
 .claude/
+.agents/
 
 # Docs build output
 site/
