@@ -171,9 +171,9 @@ coeffs = nblade.basis_expansion(multivector)
 | Outer Product | `A∧B` | Antisymmetric part |
 | Left Inner | `A⌋B` | Left contraction |
 | Right Inner | `A⌊B` | Right contraction |
-| Grade Involution | `A*` | `(-1)^r A_r` |
-| Reversion | `A†` | `(-1)^(r(r-1)/2) A_r` |
-| Clifford Conjugate | `A‡` | `(A*)†` |
+| Grade Involution | `A*` (Python: `~A`) | `(-1)^r A_r` |
+| Reversion | `A†` (Python: `A.reversion()`) | `(-1)^(r(r-1)/2) A_r` |
+| Clifford Conjugate | `A‡` (Python: `A.clifford_conjugate()`) | `(A*)†` |
 | Dual | `A⊥` | `A·I` or `AI` |
 | Inverse Dual | `A⁻⊥` | `A⌋I` |
 

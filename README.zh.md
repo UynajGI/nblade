@@ -170,9 +170,9 @@ coeffs = nblade.basis_expansion(multivector)
 | 外积 | `A∧B` | 反对称部分 |
 | 左内积 | `A⌋B` | 左收缩 |
 | 右内积 | `A⌊B` | 右收缩 |
-| 阶对合 | `A*` | `(-1)^r A_r` |
-| 反转 | `A†` | `(-1)^(r(r-1)/2) A_r` |
-| Clifford 共轭 | `A‡` | `(A*)†` |
+| 阶对合 | `A*`（Python: `~A`） | `(-1)^r A_r` |
+| 反转 | `A†`（Python: `A.reversion()`） | `(-1)^(r(r-1)/2) A_r` |
+| Clifford 共轭 | `A‡`（Python: `A.clifford_conjugate()`） | `(A*)†` |
 | 对偶 | `A⊥` | `A·I` 或 `AI` |
 | 逆对偶 | `A⁻⊥` | `A⌋I` |
 
