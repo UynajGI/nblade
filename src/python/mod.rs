@@ -241,6 +241,11 @@ impl PyMultiVector {
         self.inner.scalar_part()
     }
 
+    /// 获取指定基刃索引的系数 / Get coefficient at a given basis blade index
+    fn get_coefficient(&self, index: usize) -> f64 {
+        self.inner.get_coefficient(index)
+    }
+
     /// 获取系数数组 / Get coefficient array
     ///
     /// 对于密集多向量，使用零拷贝返回 NumPy 数组视图
@@ -441,6 +446,18 @@ impl PyMultiVector {
     /// Returns True when all coefficients have absolute value less than EPSILON (1e-15)
     fn is_zero(&self) -> bool {
         self.inner.is_zero()
+    }
+
+    /// 相等比较 / Equality comparison
+    ///
+    /// 两个多向量相等且仅当它们的差为零
+    /// Two multivectors are equal if and only if their difference is zero
+    fn __eq__(&self, other: &PyMultiVector) -> bool {
+        self.inner.sub(&other.inner).is_zero()
+    }
+
+    fn __ne__(&self, other: &PyMultiVector) -> bool {
+        !self.__eq__(other)
     }
 
     /// 检查是否可逆 / Check if invertible

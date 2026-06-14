@@ -466,8 +466,8 @@ fn test_commutator() {
 /// 测试高维空间 (n > 10)
 #[test]
 fn test_high_dimensions() {
-    // 测试 10D, 12D, 16D
-    for dim in [10, 12, 16] {
+    // 测试 10D, 12D（16D 乘法表 > 64GB，不可行）
+    for dim in [10, 12] {
         let config = Arc::new(AlgebraConfig::euclidean(dim));
 
         // 验证基向量数量

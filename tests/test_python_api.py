@@ -27,7 +27,7 @@ class TestAlgebra:
         algebra = Algebra.euclidean(3)
         assert algebra.dimension == 3
         assert algebra.signature == (3, 0, 0)
-        assert algebra.basis_count == 3
+        assert algebra.basis_count == 8  # 2^3
 
     def test_create_spacetime(self):
         """创建时空代数"""
@@ -367,7 +367,8 @@ class TestScalarProduct:
 
     def test_scalar_product_orthogonal(self, algebra_3d):
         """测试正交向量的标量积"""
-        e1, e2 = algebra_3d.basis_vectors()
+        e1 = algebra_3d.basis_vector(0)
+        e2 = algebra_3d.basis_vector(1)
 
         sp = e1.scalar_product(e2)
         assert abs(sp) < 1e-10
@@ -381,7 +382,8 @@ class TestScalarProduct:
 
     def test_scalar_product_general(self, algebra_3d):
         """测试一般向量的标量积"""
-        e1, e2 = algebra_3d.basis_vectors()
+        e1 = algebra_3d.basis_vector(0)
+        e2 = algebra_3d.basis_vector(1)
 
         a = 3 * e1 + 4 * e2
         b = 1 * e1 + 2 * e2
@@ -401,11 +403,12 @@ class TestCommutator:
 
     def test_commutator_vectors(self, algebra_3d):
         """测试向量的交换子"""
-        e1, e2 = algebra_3d.basis_vectors()
+        e1 = algebra_3d.basis_vector(0)
+        e2 = algebra_3d.basis_vector(1)
 
-        # [e1, e2] = e1e2 - e2e1 = 2e1e2
+        # e1 × e2 = ½(e1e2 - e2e1) = e1∧e2
         comm = e1.commutator(e2)
-        expected = 2 * (e1 ^ e2)
+        expected = e1 ^ e2
 
         diff = comm - expected
         assert diff.norm() < 1e-10
