@@ -47,10 +47,14 @@ jobs:
         uses: taiki-e/install-action@cargo-llvm-cov
 
       - name: Generate coverage
-        run: cargo llvm-cov --all-features --lcov --output-path lcov.info
+        run: cargo llvm-cov --lib --all-features --lcov --output-path lcov.info
+        env:
+          RUST_MIN_STACK: 8388608
 
       - name: Coverage summary
-        run: cargo llvm-cov --all-features --summary-only 2>&1 | head -40
+        run: cargo llvm-cov --lib --all-features --summary-only 2>&1 | head -40
+        env:
+          RUST_MIN_STACK: 8388608
 
   test-python:
     name: Python Tests (${{ matrix.python-version }}, ${{ matrix.os }})
