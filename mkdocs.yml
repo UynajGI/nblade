@@ -86,7 +86,7 @@ extra_javascript:
 
 # Navigation (English - default)
 nav:
-  - Home: index.md
+  - Home: en/index.md
   - Quick Start: en/quickstart.md
   - Tutorials:
       - Basics: en/tutorial/01_basics.md
@@ -103,25 +103,12 @@ nav:
 plugins:
   - search
   - i18n:
-      default_language: en
       docs_structure: folder
       languages:
-        en:
+        - locale: en
           name: English
           build: true
-        zh-cn:
+          default: true
+        - locale: zh
           name: 中文
           build: true
-      nav_translations:
-        zh-cn:
-          Home: 首页
-          Quick Start: 快速入门
-          Tutorials: 教程
-          Basics: 基础概念
-          Dual Operations: 对偶操作
-          API Reference: API 参考
-          Algebra: 代数
-          MultiVector: 多重向量
-          Examples: 示例
-          Physics: 物理应用
-          Computer Graphics: 计算机图形

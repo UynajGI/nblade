@@ -30,7 +30,7 @@ nblade/
 │   ├── physics/            # Physics applications
 │   └── cg/                 # Computer graphics examples
 └── docs/                   # MkDocs documentation
-    ├── zh/                 # Chinese documentation
+    │   └── zh/                 # Chinese documentation
     └── en/                 # English documentation
 ```
 
