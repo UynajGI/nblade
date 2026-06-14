@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Features
 - Initial release with core geometric algebra operations
 - Python bindings via PyO3
-- Support for arbitrary dimensions (up to 64D)
+- Support for arbitrary dimensions (up to 64D; practical limit ~12D for dense operations)
 - Support for arbitrary metric signatures G(p, q, r)
 - Dense and sparse multivector representations
 - NumPy integration

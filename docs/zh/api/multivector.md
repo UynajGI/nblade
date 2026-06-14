@@ -196,6 +196,11 @@ def left_inner(self, other: MultiVector) -> MultiVector
 
 **运算符**：`|`
 
+> **注意：** 在非欧几里得签名下（如时空代数 G(1,3,0)），
+> `(A | B).scalar_part()` 返回的是欧几里得内积。
+> 请使用 `A.norm_squared()` 或 `(A * B).scalar_part()`
+> 获取符合度规的结果。
+
 **示例**：
 ```python
 a = alg.vector([1, 2, 3])
@@ -450,6 +455,10 @@ def inverse(self) -> MultiVector
 **返回值**：A⁻¹ 满足 A * A⁻¹ = 1
 
 **异常**：如果不可逆则抛出异常
+
+> **注意：** 公式 `A⁻¹ = rev(A)/|A|²` 仅对纯级别多重向量有效
+> （如向量、二重向量、三重向量）。对于混合级别元素（如
+> `1 + e1 + e2∧e3`），结果可能不是真正的逆。
 
 **示例**：
 ```python

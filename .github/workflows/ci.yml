@@ -27,8 +27,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
       
-      - name: Run Rust tests
+      - name: Run Rust unit tests
         run: cargo test --lib --all-features
+
+      - name: Run Rust integration tests
+        run: cargo test --test test_arbitrary_dimension --test test_property_based
 
   test-python:
     name: Python Tests (${{ matrix.python-version }}, ${{ matrix.os }})
@@ -56,7 +59,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       
       - name: Install maturin
-        run: pip install maturin pytest numpy
+        run: pip install maturin pytest numpy ruff
       
       - name: Build wheel (Unix)
         if: runner.os != 'Windows'
@@ -77,14 +80,14 @@ jobs:
         if: runner.os != 'Windows'
         run: |
           source .venv/bin/activate
-          pytest python/test_nblade.py -v
+          pytest tests/test_python_api.py python/test_nblade.py -v
       
       - name: Run Python tests (Windows)
         if: runner.os == 'Windows'
         shell: bash
         run: |
           source .venv/Scripts/activate
-          pytest python/test_nblade.py -v
+          pytest tests/test_python_api.py python/test_nblade.py -v
 
   lint:
     name: Lint
@@ -102,3 +105,14 @@ jobs:
       
       - name: Clippy
         run: cargo clippy --all-features -- -D warnings
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Ruff check
+        run: ruff check python/

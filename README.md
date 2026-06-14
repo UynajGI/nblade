@@ -11,11 +11,11 @@
 
 ## Overview
 
-**nblade** (N-dimensional Blade) is a high-performance geometric algebra library powered by Rust, with Python bindings. It supports arbitrary dimensions (up to 64D) and arbitrary metric signatures G(p, q, r).
+**nblade** (N-dimensional Blade) is a high-performance geometric algebra library powered by Rust, with Python bindings. It supports arbitrary dimensions and arbitrary metric signatures G(p, q, r).
 
 ## Features
 
-- **Arbitrary Dimensions**: Up to 64-dimensional vector spaces
+- **Arbitrary Dimensions**: Up to 64-dimensional vector spaces (practical limit ~12D for dense operations)
 - **Arbitrary Signatures**: Support for G(p, q, r) metric signatures (Euclidean, spacetime, conformal, etc.)
 - **High Performance**: Rust backend with parallel computing and SIMD optimization
 - **Dual Representation**: Automatic selection of dense or sparse representation

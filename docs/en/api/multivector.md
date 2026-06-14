@@ -196,6 +196,11 @@ Compute the left inner product (left contraction).
 
 **Operator**: `|`
 
+> **Note:** In non-Euclidean signatures (e.g., spacetime G(1,3,0)),
+> `(A | B).scalar_part()` returns the Euclidean inner product. Use
+> `A.norm_squared()` or `(A * B).scalar_part()` for the
+> metric-respecting result.
+
 **Example**:
 ```python
 a = alg.vector([1, 2, 3])
@@ -450,6 +455,10 @@ def inverse(self) -> MultiVector
 **Returns**: A⁻¹ such that A * A⁻¹ = 1
 
 **Exceptions**: Raises exception if not invertible
+
+> **Note:** The formula `A⁻¹ = rev(A)/|A|²` is only valid for pure-grade
+> multivectors (e.g., vectors, bivectors, trivectors). For mixed-grade elements
+> like `1 + e1 + e2∧e3`, the result may not be the true inverse.
 
 **Example**:
 ```python

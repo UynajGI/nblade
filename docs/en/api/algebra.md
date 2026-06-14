@@ -13,7 +13,7 @@ class Algebra:
 
 | Parameter | Type | Description |
 |------|------|------|
-| `dimension` | `int` | Vector space dimension (1-64) |
+| `dimension` | `int` | Vector space dimension (1-64, practical ~12 for dense ops) |
 | `p` | `int` | Number of basis vectors with positive square (e_i² = +1) |
 | `q` | `int` | Number of basis vectors with negative square (e_i² = -1) |
 | `r` | `int` | Number of basis vectors with zero square (e_i² = 0) |

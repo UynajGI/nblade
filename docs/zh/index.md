@@ -13,7 +13,7 @@ nblade is a high-performance geometric algebra library implemented in Rust, with
 
 ### Features
 
-- **Arbitrary Dimensions** — Up to 64-dimensional vector spaces
+- **任意维度** — 最高 64 维（密集运算实用上限约 12 维）
 - **Arbitrary Signatures** — Support for G(p, q, r) metric signatures
 - **High Performance** — Rust backend with parallel computing and SIMD optimization
 - **Dual Representation** — Automatic dense/sparse selection
