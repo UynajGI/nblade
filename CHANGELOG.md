@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4](https://github.com/UynajGI/nblade/compare/v0.1.3...v0.1.4) (2026-06-14)
+
+
+### Bug Fixes
+
+* production-readiness — expand CI, document known limitations ([fd6cd22](https://github.com/UynajGI/nblade/commit/fd6cd22b267adcd759c7326c6ad395a1ae1984a0))
+
 ## [0.1.3] - 2026-06-14
 
 ### Features
