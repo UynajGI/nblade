@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0](https://github.com/UynajGI/nblade/compare/v0.1.4...v0.2.0) (2026-06-14)
+
+
+### Features
+
+* add LaTeX rendering support for MultiVector (Jupyter _repr_latex_) ([ccf7ef9](https://github.com/UynajGI/nblade/commit/ccf7ef9504e032ee4e2375c839d53b43e276ba9c))
+
+
+### Bug Fixes
+
+* **ci:** merge Python build+test into single step inside venv ([7f94129](https://github.com/UynajGI/nblade/commit/7f941292a8913f2563dde074d13b0ed3c492d631))
+* use strip_prefix instead of manual slice to satisfy clippy ([0dad36f](https://github.com/UynajGI/nblade/commit/0dad36f3c25453eac78a53c2cbba1f1194315575))
+
 ## [0.1.4](https://github.com/UynajGI/nblade/compare/v0.1.3...v0.1.4) (2026-06-14)
 
 
