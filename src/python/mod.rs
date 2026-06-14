@@ -521,8 +521,9 @@ impl PyMultiVector {
             });
         }
         // 两者都不是，抛出 TypeError / Neither worked, raise TypeError
+        let other_type = other.get_type().name().map(|n| n.to_string()).unwrap_or_else(|_| "?".to_string());
         Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
-            "unsupported operand type(s) for *: 'MultiVector' and the given type",
+            format!("unsupported operand type(s) for *: 'MultiVector' and '{}'", other_type),
         ))
     }
 

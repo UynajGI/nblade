@@ -40,7 +40,8 @@ dev = [
     "maturin>=1.0",
     "ruff",
     "hypothesis>=6.0",
-    "pytest-cov>=5.0"
+    "pytest-cov>=5.0",
+    "mypy>=1.0"
 ]
 plotting = [
     "matplotlib>=3.5"
@@ -65,6 +66,12 @@ include = [
 testpaths = ["python"]
 python_files = "test_*.py"
 addopts = ["-v"]
+
+[tool.mypy]
+python_version = "3.8"
+ignore_missing_imports = true
+warn_unused_configs = true
+strict = true
 
 [tool.ruff]
 line-length = 88

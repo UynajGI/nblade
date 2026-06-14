@@ -324,7 +324,7 @@ mod tests {
                 // grade 1 is odd, sign changes
                 assert!((s.get_coefficient(1) + 1.0).abs() < 1e-10);
             }
-            MultiVector::Dense(_) => panic!("Expected Sparse variant"),
+            MultiVector::Dense(_) => unreachable!("sparse_involution called with Dense variant — internal error"),
         }
     }
 
@@ -348,7 +348,7 @@ mod tests {
                 // grade 2: r(r-1)/2 = 1 (odd, sign changes)
                 assert!((s.get_coefficient(3) + 1.0).abs() < 1e-10);
             }
-            MultiVector::Dense(_) => panic!("Expected Sparse variant"),
+            MultiVector::Dense(_) => unreachable!("sparse_involution called with Dense variant — internal error"),
         }
     }
 
@@ -365,7 +365,7 @@ mod tests {
                 // e1‡ = -e1
                 assert!((s.get_coefficient(1) + 1.0).abs() < 1e-10);
             }
-            MultiVector::Dense(_) => panic!("Expected Sparse variant"),
+            MultiVector::Dense(_) => unreachable!("sparse_involution called with Dense variant — internal error"),
         }
     }
 
