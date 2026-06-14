@@ -75,12 +75,12 @@ from typing import List, Tuple, Union
 from ._core import (
     AlgebraConfig,
     MultiVector,
-    create_rotor,
-    reciprocal_frame,
-    verify_reciprocal_frame,
-    metric_tensor,
     basis_expansion,
     basis_reconstruction,
+    create_rotor,
+    metric_tensor,
+    reciprocal_frame,
+    verify_reciprocal_frame,
 )
 
 __version__ = "0.1.3"
@@ -172,7 +172,7 @@ class Algebra:
         return MultiVector.from_scalar(self._config, value)
 
     def from_scalar(self, value: float) -> MultiVector:
-        """创建标量多向量（scalar 方法的别名）/ Create scalar multivector (alias for scalar)"""
+        """创建标量多向量（scalar 的别名）"""
         return self.scalar(value)
 
     def one(self) -> MultiVector:
@@ -187,7 +187,7 @@ class Algebra:
         """从列表或元组创建向量（1-向量）"""
         if len(data) != self.dimension:
             raise ValueError(
-                f"Vector data length ({len(data)}) must equal algebra dimension ({self.dimension})"
+                f"Vector length ({len(data)}) != algebra dimension ({self.dimension})"
             )
 
         result = self.zeros()

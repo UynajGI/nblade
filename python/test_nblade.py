@@ -10,16 +10,14 @@ Tests all public APIs of the _core Rust extension module and ga Python wrapper.
 """
 
 import math
+
 import pytest
-import numpy as np
-
-# 导入 Rust 扩展模块 (通过 ga 包)
-
-from nblade._core import AlgebraConfig, MultiVector, create_rotor, __version__
 
 # 导入 Python 包装器
 from nblade import Algebra
 
+# 导入 Rust 扩展模块 (通过 ga 包)
+from nblade._core import AlgebraConfig, MultiVector, __version__, create_rotor
 
 # =============================================================================
 # Fixtures
@@ -712,9 +710,9 @@ class TestIntegration:
         e2 = MultiVector.basis_vector(config_3d, 1)
 
         # ab = a·b + a∧b 对于正交向量
-        geometric = e1.geometric_product(e2)
+        e1.geometric_product(e2)
         inner = e1.left_inner(e2)
-        outer = e1.outer_product(e2)
+        e1.outer_product(e2)
 
         # 对于正交向量，内积为零，几何积等于外积
         assert inner.is_zero()
