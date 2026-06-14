@@ -54,7 +54,13 @@ lcov.info
 # Development notes
 full_zh.md
 summary.md
+.mcp.json
+CLAUDE.md
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Tools
+.code-review-graph/
+.claude/
