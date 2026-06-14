@@ -126,6 +126,18 @@ class Algebra:
     """
 
     def __init__(self, dimension: int, p: int = 0, q: int = 0, r: int = 0) -> None:
+        if dimension < 1:
+            raise ValueError(f"dimension must be at least 1, got {dimension}")
+        if dimension > 12:
+            raise ValueError(
+                f"dimension {dimension} exceeds practical limit (12). "
+                "Dense operations use O(2^2n) memory and may OOM."
+            )
+        if p + q + r != dimension:
+            raise ValueError(
+                f"p + q + r ({p + q + r}) must equal dimension ({dimension}), "
+                f"got p={p}, q={q}, r={r}"
+            )
         self._config = AlgebraConfig(dimension, p, q, r)
 
     @classmethod

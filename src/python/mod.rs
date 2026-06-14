@@ -38,6 +38,28 @@ impl PyAlgebraConfig {
     #[pyo3(text_signature = "(dimension, p, q, r)")]
     #[new]
     fn new(dimension: u32, p: u32, q: u32, r: u32) -> PyResult<Self> {
+        if dimension == 0 {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                "dimension must be at least 1, got 0"
+            ));
+        }
+        if dimension > 12 {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                format!(
+                    "dimension {} exceeds practical limit (12). \
+                     Dense operations use O(2^2n) memory and may OOM.",
+                    dimension
+                )
+            ));
+        }
+        if p + q + r != dimension {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                format!(
+                    "p + q + r ({}) must equal dimension ({}), got p={}, q={}, r={}",
+                    p + q + r, dimension, p, q, r,
+                )
+            ));
+        }
         let signature = Signature::new(p, q, r);
         let config = AlgebraConfig::new(dimension, signature);
         Ok(Self {
@@ -204,6 +226,14 @@ impl PyMultiVector {
     #[pyo3(text_signature = "(config, i)")]
     #[classmethod]
     fn basis_vector(_cls: &Bound<'_, PyType>, config: &PyAlgebraConfig, i: u32) -> PyResult<Self> {
+        if i >= config.inner.dimension() {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                format!(
+                    "basis vector index {} out of range for dimension {} algebra (valid: 0..{})",
+                    i, config.inner.dimension(), config.inner.dimension()
+                )
+            ));
+        }
         Ok(Self {
             inner: MultiVector::basis_vector(config.inner.clone(), i),
         })
@@ -220,6 +250,16 @@ impl PyMultiVector {
         config: &PyAlgebraConfig,
         coefficients: Vec<f64>,
     ) -> PyResult<Self> {
+        let expected = config.inner.basis_count();
+        let actual = coefficients.len();
+        if actual != expected {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                format!(
+                    "coefficients length {} must equal basis_count ({}) for {}-dimensional algebra",
+                    actual, expected, config.inner.dimension()
+                )
+            ));
+        }
         Ok(Self {
             inner: MultiVector::from_coefficients(config.inner.clone(), coefficients),
         })
@@ -285,6 +325,15 @@ impl PyMultiVector {
                 e
             ))
         })?;
+        let expected = config.inner.basis_count();
+        if slice.len() != expected {
+            return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>(
+                format!(
+                    "array length {} must equal basis_count ({}) for {}-dimensional algebra",
+                    slice.len(), expected, config.inner.dimension()
+                )
+            ));
+        }
         let coefficients = slice.to_vec();
         Ok(Self {
             inner: MultiVector::from_coefficients(config.inner.clone(), coefficients),
